@@ -9,18 +9,9 @@
 #import "IREAudioRecorderQueue.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "FixedFifo.h"
+#import "IRECommon.h"
 
-#define kNumberRecordBuffers 3
-
-#define kNumDrawBuffers 12
-#define kDefaultDrawSamples 1024
-#define kMinDrawSamples 256
-#define kMaxDrawSamples 4096
-
-#define DATA_BUFF_STRUCT_SIZE 32
-#define DATA_BUFF_STRUCT_SIZE_TRIGGER 20
-#define MIC_DATA_BUFF_SIZE DATA_BUFF_STRUCT_SIZE*kMinDrawSamples
-#define MIC_DATA_BUFF_SIZE_TRIGGER 20
+#define kNumberRecordBuffers 5
 
 typedef struct CallbackInputStruct {
     BOOL queueIsRunning;
@@ -84,25 +75,12 @@ static void audioQueueInputCallback(void *inUserData, AudioQueueRef inQueue, Aud
     if (inNumPackets > 0) {
 //        checkError(AudioFileWritePackets(recorder->recordFile, FALSE, inBuffer->mAudioDataByteSize, inPacketDesc, recorder->recordPacket, &inNumPackets, inBuffer->mAudioData), "AudioFileWritePackets error");
         
-//        for(int i=0; i<inBuffer->mAudioDataByteSize; i++) {
-//            NSLog(@"%d", (int)inBuffer->mAudioData[i]);
-//        }
-        
-        int sampleCount = inBuffer->mAudioDataBytesCapacity / sizeof (SInt32);
-        SInt32 *p = (SInt32*)inBuffer->mAudioData;
+        int sampleCount = inBuffer->mAudioDataBytesCapacity / sizeof (SInt16);
+        SInt16 *p = (SInt16*)inBuffer->mAudioData;
         for (int i = 0; i < sampleCount; i++) {
-            SInt32 val = p[i];
-//            NSLog(@"%d", (int)val);
-            recorder->audioFifo->push((float)val);
+            SInt16 val = p[i];
+            recorder->audioFifo->push((float)val); // save PCM data to a fixed fifo
         }
-        
-        
-//        char *saves = "abcd";
-//        NSData *data = [[NSData alloc] initWithBytes:saves length:4];
-//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//        NSString *documentsDirectory = [paths objectAtIndex:0];
-//        NSString *appFile = [documentsDirectory stringByAppendingPathComponent:@"MyFile"];
-//        [data writeToFile:appFile atomically:NO];
         
         recorder->recordPacket += inNumPackets;
     }
@@ -124,7 +102,7 @@ static void audioQueueInputCallback(void *inUserData, AudioQueueRef inQueue, Aud
     recordFormat.mFramesPerPacket = 1;
     recordFormat.mBytesPerFrame = 4;
     recordFormat.mChannelsPerFrame = 1;
-    recordFormat.mBitsPerChannel = 32;
+    recordFormat.mBitsPerChannel = 16;//32;
 //    recordFormat.mFormatFlags = kAudioFormatFlagsNativeEndian|kAudioFormatFlagIsPacked|kAudioFormatFlagIsFloat;
     recordFormat.mFormatFlags = kAudioFormatFlagIsPacked|kAudioFormatFlagIsSignedInteger;
     UInt32 propertySize = sizeof(recordFormat);

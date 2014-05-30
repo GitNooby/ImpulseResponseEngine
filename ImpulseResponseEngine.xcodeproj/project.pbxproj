@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E5F652E19381AA200B46C37 /* IRESensorsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F652D19381AA200B46C37 /* IRESensorsController.mm */; };
+		6E5F653019381CA400B46C37 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5F652F19381CA400B46C37 /* CoreMotion.framework */; };
+		6E5F6533193825B400B46C37 /* IRESensorRecording.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F6532193825B400B46C37 /* IRESensorRecording.m */; };
+		6E5F65381938286A00B46C37 /* IRESignalProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5F65371938286A00B46C37 /* IRESignalProcessor.m */; };
+		6E5F653A1938288700B46C37 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5F65391938288600B46C37 /* Accelerate.framework */; };
 		6EFF19051936DB76007D9AA3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EFF19041936DB76007D9AA3 /* Foundation.framework */; };
 		6EFF19071936DB76007D9AA3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EFF19061936DB76007D9AA3 /* CoreGraphics.framework */; };
 		6EFF19091936DB76007D9AA3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EFF19081936DB76007D9AA3 /* UIKit.framework */; };
@@ -38,6 +43,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E5F652C19381AA200B46C37 /* IRESensorsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRESensorsController.h; sourceTree = "<group>"; };
+		6E5F652D19381AA200B46C37 /* IRESensorsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IRESensorsController.mm; sourceTree = "<group>"; };
+		6E5F652F19381CA400B46C37 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		6E5F6531193825B400B46C37 /* IRESensorRecording.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRESensorRecording.h; sourceTree = "<group>"; };
+		6E5F6532193825B400B46C37 /* IRESensorRecording.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRESensorRecording.m; sourceTree = "<group>"; };
+		6E5F6534193825FF00B46C37 /* IRECommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRECommon.h; sourceTree = "<group>"; };
+		6E5F65361938286A00B46C37 /* IRESignalProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRESignalProcessor.h; sourceTree = "<group>"; };
+		6E5F65371938286A00B46C37 /* IRESignalProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRESignalProcessor.m; sourceTree = "<group>"; };
+		6E5F65391938288600B46C37 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		6EFF19011936DB76007D9AA3 /* ImpulseResponseEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImpulseResponseEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EFF19041936DB76007D9AA3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6EFF19061936DB76007D9AA3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -70,6 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E5F653A1938288700B46C37 /* Accelerate.framework in Frameworks */,
+				6E5F653019381CA400B46C37 /* CoreMotion.framework in Frameworks */,
 				6EFF19411936DD10007D9AA3 /* AudioToolbox.framework in Frameworks */,
 				6EFF19071936DB76007D9AA3 /* CoreGraphics.framework in Frameworks */,
 				6EFF19091936DB76007D9AA3 /* UIKit.framework in Frameworks */,
@@ -90,6 +106,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E5F652B19381A6200B46C37 /* SensorsController */ = {
+			isa = PBXGroup;
+			children = (
+				6E5F6534193825FF00B46C37 /* IRECommon.h */,
+				6EFF193C1936DB93007D9AA3 /* AudioRecorderQueue */,
+				6E5F652C19381AA200B46C37 /* IRESensorsController.h */,
+				6E5F652D19381AA200B46C37 /* IRESensorsController.mm */,
+				6E5F6531193825B400B46C37 /* IRESensorRecording.h */,
+				6E5F6532193825B400B46C37 /* IRESensorRecording.m */,
+			);
+			name = SensorsController;
+			sourceTree = "<group>";
+		};
+		6E5F65351938283200B46C37 /* SignalProcessing */ = {
+			isa = PBXGroup;
+			children = (
+				6E5F65361938286A00B46C37 /* IRESignalProcessor.h */,
+				6E5F65371938286A00B46C37 /* IRESignalProcessor.m */,
+			);
+			name = SignalProcessing;
+			sourceTree = "<group>";
+		};
 		6EFF18F81936DB76007D9AA3 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +150,8 @@
 		6EFF19031936DB76007D9AA3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E5F65391938288600B46C37 /* Accelerate.framework */,
+				6E5F652F19381CA400B46C37 /* CoreMotion.framework */,
 				6EFF19401936DD10007D9AA3 /* AudioToolbox.framework */,
 				6EFF19041936DB76007D9AA3 /* Foundation.framework */,
 				6EFF19061936DB76007D9AA3 /* CoreGraphics.framework */,
@@ -124,7 +164,8 @@
 		6EFF190A1936DB76007D9AA3 /* ImpulseResponseEngine */ = {
 			isa = PBXGroup;
 			children = (
-				6EFF193C1936DB93007D9AA3 /* AudioRecorderQueue */,
+				6E5F65351938283200B46C37 /* SignalProcessing */,
+				6E5F652B19381A6200B46C37 /* SensorsController */,
 				6EFF19131936DB76007D9AA3 /* IREAppDelegate.h */,
 				6EFF19141936DB76007D9AA3 /* IREAppDelegate.m */,
 				6EFF19161936DB76007D9AA3 /* Main_iPhone.storyboard */,
@@ -278,9 +319,12 @@
 			files = (
 				6EFF19111936DB76007D9AA3 /* main.m in Sources */,
 				6EFF19441936F65E007D9AA3 /* FixedFifo.cpp in Sources */,
+				6E5F652E19381AA200B46C37 /* IRESensorsController.mm in Sources */,
 				6EFF19151936DB76007D9AA3 /* IREAppDelegate.m in Sources */,
 				6EFF191E1936DB76007D9AA3 /* IREViewController.m in Sources */,
+				6E5F65381938286A00B46C37 /* IRESignalProcessor.m in Sources */,
 				6EFF193F1936DBC6007D9AA3 /* IREAudioRecorderQueue.mm in Sources */,
+				6E5F6533193825B400B46C37 /* IRESensorRecording.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +539,7 @@
 				6EFF19381936DB77007D9AA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6EFF19391936DB77007D9AA3 /* Build configuration list for PBXNativeTarget "ImpulseResponseEngineTests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +548,7 @@
 				6EFF193B1936DB77007D9AA3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
